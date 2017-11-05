@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+        #container{
+            border: 1px solid;
+            height: 200px;
+            width: 400px;
+            margin: 200px auto;
+        }
+        #tab{
+            position: relative;
+            height: 30px;
+        }
+        #tab li{
+            height: 30px;
+            width: 100px;
+            background-color: #424242;
+            float: left;
+            cursor: pointer;
+            margin-right: 3px;
+            text-align: center;
+            line-height: 30px;
+        }
+        #tab .selected{
+            background-color: #ff6700;
+        }
+        #content div{
+            display: none;
+        }
+        #content .selected{
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="tab">
+            <ul>
+                <li class="selected">js</li>
+                <li>css</li>
+                <li>html</li>
+            </ul>
+        </div>
+        <div id="content">
+            <div class="selected">111</div>
+            <div>222</div>
+            <div>333</div>
+        </div>
+    </div>
+    <script>
+        var oTab=document.getElementById('tab');
+        var aLi=oTab.getElementsByTagName('li');
+        var oContent=document.getElementById('content');
+        var aDiv=oContent.getElementsByTagName('div');
+
+        for(var i=0;i < aLi.length;i++) {
+            aLi[i].index=i;
+            aLi[i].onclick = function () {
+                for (var i = 0; i < aLi.length; i++) {
+                    aLi[i].className = '';
+                    aDiv[i].className = '';
+                }
+                this.className = 'selected';
+                aDiv[this.index].className = 'selected';
+            }
+
+        }
+
+    </script>
+</body>
+</html>
