@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+           list-style: none;
+        }
+        img{
+            border: 0;
+        }
+        #container{
+            height: 280px;
+            width: 520px;
+            position: relative;
+        }
+        #imgs{
+            display: none;
+        }
+        #img .selected{
+            display: block;
+        }
+        #tab{
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+        #arrows{
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+        }
+        #tab li, #arrows span{
+            float: left;
+            height: 20px;
+            width: 20px;
+            background: #000000;
+            color: #e0e0e0;
+            cursor: pointer;
+            text-align: center;
+            line-height: 20px;
+            margin-right: 5px;
+        }
+        #tab .selected{
+            background: #ff6700;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="imgs">
+            <img src="img/1.jpg" alt="" class="selected">
+            <img src="img/2.jpg" alt="">
+            <img src="img/3.jpg" alt="">
+            <img src="img/4.jpg" alt="">
+        </div>
+        <div id="tab">
+            <ul>
+                <li class="selected">1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+        </div>
+        <div id="arrows">
+            <span id="prev">&lt;</span>
+            <span id="next">&gt;</span>
+        </div>
+    </div>
+</body>
+</html>
