@@ -18,11 +18,12 @@
             height: 280px;
             width: 520px;
             position: relative;
+            margin: 100px auto;
         }
-        #imgs{
+        #imgs img{
             display: none;
         }
-        #img .selected{
+        #imgs .selected{
             display: block;
         }
         #tab{
@@ -72,5 +73,74 @@
             <span id="next">&gt;</span>
         </div>
     </div>
+
+    <script>
+        var oContainer = document.getElementById('container');
+        var oImgs = document.getElementById('imgs');
+        var oTab = document.getElementById('tab');
+        var aLi = oTab.getElementsByTagName('li');
+        var aImg = oImgs.getElementsByTagName('img');
+        var oPrev = document.getElementById('prev');
+        var oNext = document.getElementById('next');
+        var iNowIndex = 0;
+        var timer;
+
+
+        for(var i=0;i<aLi.length;i++){
+            aLi[i].index = i
+            aLi[i].onmouseover = function () {
+                iNowIndex = this.index;
+
+                for(var i=0;i<aLi.length;i++) {
+                    aLi[i].className = '';
+                    aImg[i].className = '';
+                }
+
+                    aLi[iNowIndex].className = 'selected';
+                    aImg[iNowIndex].className = 'selected';
+
+            }
+        }
+        
+        oPrev.onclick = oNext.onclick = function () {
+            if(oPrev === this){
+                iNowIndex--;
+                if(iNowIndex == -1){
+                    iNowIndex = aImg.length -1;
+                }
+            }else{
+                iNowIndex++;
+                if(iNowIndex == aImg.length){
+                    iNowIndex = 0;
+                }
+            }
+
+            for(var i=0;i<aLi.length;i++){
+                aLi[i].className = '';
+                aImg[i].className = '';
+            }
+            aLi[iNowIndex].className = 'selected';
+            aImg[iNowIndex].className = 'selected';
+        }
+
+        oPrev.onselectstart = oNext.onselectstart = function () {
+            return false;
+        }
+
+        play()
+        oContainer.onmouseover = function () {
+            clearInterval(timer)
+        }
+        oContainer.onmouseout = function () {
+            play()
+        }
+
+        function play() {
+            timer =setInterval( function () {
+                oNext.onclick();
+                },1000)
+
+        }
+    </script>
 </body>
 </html>
