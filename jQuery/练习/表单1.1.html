@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="">
+    <input type="text" id="username">
+</form>
+
+<script src="../jquery-3.2.1.js"></script>
+<script>
+    $(function () {
+        $(':input').focus(function () {
+            $(this).addClass('focus');
+        }).blur(function () {
+            $(this).removeClass('focus')
+        });
+    })
+
+</script>
+</body>
+</html>
