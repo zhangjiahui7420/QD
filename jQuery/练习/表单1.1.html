@@ -4,9 +4,27 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<style>
+    .focus{
+        border: 1px solid #f00;
+        background: #fcc;
+    }
+</style>
 <body>
 <form action="">
-    <input type="text" id="username">
+    <div>
+        <lable for="username">名称</lable>
+        <input type="text" id="username" value="名称">
+    </div>
+    <div>
+        <lable for="pass">密码</lable>
+        <input type="password" id="pass" value="密码">
+    </div>
+    <div>
+        <lable for="msg">详细信息</lable>
+        <textarea name="" id="msg" cols="30" rows="10"></textarea>
+    </div>
+
 </form>
 
 <script src="../jquery-3.2.1.js"></script>
