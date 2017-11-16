@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <style>
-    #big,#small{
+    #bigger,#smaller{
         width: 50px;
         height: 50px;
         background: #b0b0b0;
@@ -13,22 +13,39 @@
         text-align: center;
         line-height: 50px;
     }
-    #msg{
+    #msg-caption{
         float: left;
+        width: 100%;
+        overflow: hidden;
+    }
+    #msg-caption span{
+        margin:0 2px;
+        padding:4px 10px;
     }
 </style>
 <body>
 <div id="msg">
     <div id="msg-caption">
-    <div id="big">放大</div>
-    <div id="small">缩小</div>
+        <span id="bigger">放大</span>
+        <span id="smaller">缩小</span>
     </div>
     <div>
         <textarea name="" id="comment" cols="30" rows="10">
             多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.
         </textarea>
     </div>
-
 </div>
+<script src="../jquery-3.2.1.js"></script>
+<script>
+    $(function (){
+        var $comment = $('comment');
+        $('bigger').on('click',function () {
+            $comment.height($comment.height()<500?$comment.height()+50:$comment.height());
+        })
+        $('smaller').on('click',function () {
+            $comment.height($comment.height()>50?$comment.height()-50:$comment.height());
+        })
+    });
+</script>
 </body>
 </html>
