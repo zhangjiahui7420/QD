@@ -45,15 +45,24 @@
 </div>
 <script src="jquery-3.2.1.js"></script>
 <script>
-    $(function (){
+    $(function () {
         var $comment = $('#comment');
         $('#bigger').on('click',function () {
-            $comment.height($comment.height()<500?$comment.height()+50:$comment.height());
+            if(!$comment.is(':animated')){
+                if($comment.height()<500){
+                    $comment.animate({height :"+=50"},400)
+                }
+            }
         });
         $('#smaller').on('click',function () {
-            $comment.height($comment.height()>50?$comment.height()-50:$comment.height());
-        })
+            if(!$comment.is(':animated')){
+                if($comment.height()<500){
+                    $comment.animate({height :"-=50"},400)
+                }
+            }
+        });
     });
 </script>
+
 </body>
 </html>
