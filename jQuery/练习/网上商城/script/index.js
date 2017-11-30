@@ -33,8 +33,26 @@ $(function () {
         });
     });
 
-    $('#jnImageroll > div')
+    $('#jnImageroll > div').css('zIndex',$imgs.length);
+    $('#jnImageroll a').on('mouseover',function () {
+       $(this).addClass('chos').siblings().removeClass('chos');
+       $imgs.eq($(this).index()).stop().fadeIn().siblings().stop().fadeOut();
+    });
 
+
+    //tooltip
+    tooltip('#jnNoticeInfo a')
+    tooltip('#jnCatalog a')
+
+
+    //品牌活动
+    var $jnBrandList = $('#jnBrandList');
+    $('#jnBrandTab li').on('click',function () {
+        $(this).addClass('chos').siblings().removeClass('chos');
+        $jnBrandList.animate({
+            left:
+        })
+    });
 
     });
 
