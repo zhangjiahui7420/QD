@@ -50,7 +50,7 @@ $(function () {
     $('#jnBrandTab li').on('click',function () {
         $(this).addClass('chos').siblings().removeClass('chos');
         $jnBrandList.animate({
-            left:
+            left:-$('li', $jnBrandList).eq(0).innerWidth()* 4 * $(this).index()
         })
     });
 
