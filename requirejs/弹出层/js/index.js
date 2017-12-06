@@ -15,7 +15,7 @@ require(['jquery','dialog'],function ($,Dialog) {
            content:'reigist.html'
        };
 
-       var dl = new Dialog()
-        dl.open(setting);
+        var dl = new Dialog()
+        dl.open(settings);
     });
 });
