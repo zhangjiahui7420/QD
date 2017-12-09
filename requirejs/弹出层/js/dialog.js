@@ -41,7 +41,7 @@ define(['jquery'],function ($) {
         }
         this.$close.on('click',function () {
             this.close()
-        }.bind(this));//改变this指向
+        }.bind(this));//改变this指向，非立即调用
     };
 
     Dialog.prototype.close = function () {
