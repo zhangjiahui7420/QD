@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+    }
+    li{
+        list-style: none;
+    }
+    body,html{
+        width: 100%;
+        height: 100%;
+    }
+
+    #container{
+        width: 100%;
+        height: 100%;
+        background: url(img/bg.jpg);
+        position: relative;
+    }
+    #container .img{
+        width: 125px;
+        height: 125px;
+        border: 5px solid #fff;
+        box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
+        position: absolute;
+        top:-500px;
+        left: -500px;
+        cursor: pointer;
+        transition: all 1s ease;
+    }
+    #container .img span{
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        display: block;
+        transition: all 1s ease;
+    }
+    #prev,#next{
+        width: 60px;
+        height: 60px;
+        background: #ffffff no-repeat center;
+        position: absolute;
+        top:50%;
+        margin-top: 30px;
+        cursor: pointer;
+        display: none;
+    }
+    #prev{
+        background-image: url(img/prev.png);
+        left: 0;
+        border-radius: 0 8px 8px 0;
+    }
+    #next{
+        background-image: url("img/next.png");
+        right: 0;
+        border-radius: 8px 0 0 8px;
+    }
+</style>
+<body>
+    <div id="container"></div>
+    <div id="prev"></div>
+    <div id="next"></div>
+
+    <script>
+        const ROW = 4,
+        COL = 6,
+            NUM = ROW * COL;
+        BIG_WIDTH = 750;
+        BIG_HEIGHT = 500;
+        THUMB_WIDTH = 125;
+        THUMB_HEIGHT = 125;
+        let oContainer = document.getElementById("container");
+        let count = 0;//计数器，表示加载成功的图片的数量
+        let aImg = null;
+        let colGap,rowGap;
+        let nowindex = 0;
+        let oPrev = document.getElementById('prev');
+        let oNext = document.getElementById('next');
+
+        for( var i=0;i<NUM ;i++){
+            //图片预加载
+            var oThumbsImg = new Image();
+            oThumbsImg.onload = function () {
+                count++;
+                if(count == NUM * 2){
+                    loadSuccess()
+                }
+            };
+            oThumbsImg.src = 'img/thumbs/'+(i + 1)+'.jpg';
+
+            var oBigImg = new Image();
+            oBigImg.onload = function () {
+                count++;
+                if(count == NUM * 2){
+                    loadSuccess()
+                }
+            };
+            oBigImg.src = 'img/'+(i+1)+'.jpg';
+        }
+
+        //把图片放到容器里
+        function loadSuccess() {
+            for(var i=0;i < ROW;i++){
+                for(var j=0;j<COL;j++){
+                   var oDiv = document.createElement('div');
+                    oDiv.style.background = 'url(img/thumbs/' + (i * COL + j + 1)+ '.jpg) no-repeat';
+                    oDiv.className = 'img';
+                    oDiv.pos={//表示坐标
+                        x : j,
+                        y : i
+                    };
+                    //定义index属性，保存对应的图片名称
+                    oDiv.index = i * COL + j +1 ;
+                    oDiv.innerHTML = '<span></span>';
+                    oContainer.appendChild(oDiv);
+                }
+            }
+            //计算图片间隙
+            aImg = oContainer.getElementsByTagName('div');
+            var colGap = (oContainer.offsetWidth - aImg[0].offsetWidth * COL) / (COL+1);
+            var rowGap = (oContainer.offsetHeight - aImg[0].offsetHeight * ROW) / (ROW + 1);
+
+            //计算小图片位置
+            for(var i = 0;i<NUM;i++){
+                aImg[i].style.transform = 'rotate('+ Math.floor(Math.random() * 40 - 20)+ 'deg)';
+                aImg[i].style.transitionDelay = (NUM - i)*100 +'ms';   //设置延迟时间 写在前面
+                aImg[i].style.top = (rowGap + aImg[0].offsetHeight)*aImg[i].pos.y + rowGap +'px';
+                aImg[i].style.left = (colGap + aImg[0].offsetWidth) * aImg[i].pos.x + colGap + 'px';
+            }
+
+            //计算大图片间隙
+            let bigColGap =(oContainer.offsetWidth - BIG_WIDTH )/2,
+                bigRowGap = (oContainer.offsetHeight - BIG_HEIGHT)/ 2;
+//                console.log(oContainer.offsetHeight);
+//                console.log(BIG_HEIGHT);
+//                console.log(bigRowGap);
+            let bFlag = true;  //标志位，true表示散开要合并，false表示合并要散开
+            //利用事件委托， 给24个div绑定事件
+            oContainer.onclick = function (e) {
+                // e.target => oContainer/div/span
+//                console.log(e.target)
+//                console.log(e.currentTarget)
+                if(e.currentTarget!=e.target) {
+                    if (bFlag) {
+                        for (let i = 0; i < NUM; i++) {
+                            aImg[i].style.transitionDelay = '0ms';
+                            aImg[i].style.borderWidth = '1px';
+                            aImg[i].style.top = bigRowGap + THUMB_HEIGHT * aImg[i].pos.y + 'px';
+                            aImg[i].style.left = bigColGap + THUMB_WIDTH * aImg[i].pos.x + 'px';
+                            aImg[i].style.transform = 'rotate(0deg)';
+
+                            let oSpan = aImg[i].getElementsByTagName('span')[0];
+                            oSpan.style.opacity = 1;
+                            let imgUrl;
+                            if (e.target.tagName == 'DIV') {
+                                imgUrl = e.target.index;
+                            } else {//span
+                                imgUrl = e.target.parentNode.index;
+                            }
+                            oSpan.style.backgroundImage = 'url(img/' + imgUrl + '.jpg)';
+                            oSpan.style.backgroundPosition = -THUMB_WIDTH * aImg[i].pos.x + 'px ' + (-THUMB_HEIGHT
+                                * aImg[i].pos.y) + 'px';
+                            nowindex = imgUrl;
+                            oSpan.style.transitionDelay = '0ms';
+                        }
+                        oPrev.style.display = oNext.style.display = 'block';
+                    } else {
+                        for (let i = 0; i < NUM; i++) {
+                            aImg[i].style.transform = 'rotate(' + Math.floor(Math.random() * 40 - 20) + 'deg)';
+                            aImg[i].style.transitionDelay = '0ms';
+                            aImg[i].style.top = (rowGap + aImg[0].offsetHeight) * aImg[i].pos.y + rowGap + 'px';
+                            aImg[i].style.left = (colGap + aImg[0].offsetWidth) * aImg[i].pos.x + colGap + 'px';
+                            let oSpan = aImg[i].getElementsByTagName('span')[0];
+                            oSpan.style.opacity = 0;
+                            oSpan.style.transitionDelay = '0ms';
+                        }
+                        oPrev.style.display = oNext.style.display = 'none';
+                    }
+                    bFlag = !bFlag;
+                }
+            }
+        };
+
+        oPrev.onclick = oNext.onclick = function () {
+            if(this === oPrev){
+                nowindex--;
+                if(nowindex < 1){
+                    nowindex = NUM;
+                }
+            }else{
+                nowindex++;
+                if(nowindex > NUM){
+                    nowindex = 1
+                }
+            }
+            let arr = []; // 0~23
+            for (let i = 0; i < NUM; i++) {
+                arr.push(i);
+            }
+            arr.sort(function () {
+                return Math.random() - 0.5;
+            });
+            for(let i = 0;i < arr.length; i++){
+                let oSpan = aImg[arr[i]].getElementsByTagName('span')[0];
+                oSpan.style.transitionDelay = i * 50 + 'ms';
+                oSpan.style.backgroundImage = 'url(img/' + nowindex + '.jpg)';
+            }
+        }
+
+    </script>
+</body>
+</html>
