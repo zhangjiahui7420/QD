@@ -89,7 +89,7 @@
             oThumbsImg.onload = function () {
                 count++;
                 if(count == NUM * 2){
-                    loadSuccess()
+                    loadSuccess();
                 }
             };
             oThumbsImg.src = 'img/thumbs/'+(i + 1)+'.jpg';
@@ -98,7 +98,7 @@
             oBigImg.onload = function () {
                 count++;
                 if(count == NUM * 2){
-                    loadSuccess()
+                    loadSuccess();
                 }
             };
             oBigImg.src = 'img/'+(i+1)+'.jpg';
@@ -109,7 +109,7 @@
             for(var i=0;i < ROW;i++){
                 for(var j=0;j<COL;j++){
                    var oDiv = document.createElement('div');
-                    oDiv.style.background = 'url(img/thumbs/' + (i * COL + j + 1)+ '.jpg) no-repeat';
+                    oDiv.style.backgrond = 'url(img/thumbs/' + (i * COL + j + 1)+ '.jpg) no-repeat';
                     oDiv.className = 'img';
                     oDiv.pos={//表示坐标
                         x : j,
@@ -177,7 +177,7 @@
                             aImg[i].style.top = (rowGap + aImg[0].offsetHeight) * aImg[i].pos.y + rowGap + 'px';
                             aImg[i].style.left = (colGap + aImg[0].offsetWidth) * aImg[i].pos.x + colGap + 'px';
                             let oSpan = aImg[i].getElementsByTagName('span')[0];
-                            oSpan.style.opacity = 0;
+                            oSpan.style.opacity = 1;
                             oSpan.style.transitionDelay = '0ms';
                         }
                         oPrev.style.display = oNext.style.display = 'none';
@@ -212,7 +212,6 @@
                 oSpan.style.backgroundImage = 'url(img/' + nowindex + '.jpg)';
             }
         }
-
     </script>
 </body>
 </html>
