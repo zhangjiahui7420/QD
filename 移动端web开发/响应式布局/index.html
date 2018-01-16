@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+</head>
+    <style>
+        img{
+            border: none;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .nav{
+            width: 960px;
+            background: #336699;
+            height: 100px;
+            line-height: 100px;
+            text-align:center;
+            font-size: 2rem;
+            margin: 10px auto;
+
+        }
+        img{
+            margin: 0 auto;
+        }
+        .left{
+            width: 630px;
+            background: #E31559;
+            float: left;
+        }
+        .right{
+            width: 300px;
+            background: #F296B2;
+            float: right;
+        }
+        #content{
+              width: 960px;
+              margin: 0 auto;
+              display: table;
+          }
+        .right,.left{
+            height: 200px;
+            text-align: center;
+            display: table-cell;
+            vertical-align: middle;
+        }
+        @media (max-width: 959px) {
+            .nav{
+                width: 100%;
+            }
+            .right{
+                width: 30%;
+            }
+            .left{
+                width: 67%;
+                margin-right: 3%;
+            }
+            img{
+                width: 100%;
+            }
+            #content{
+                width: 100%;
+            }
+        }
+        @media (max-width: 559px) {
+            .left,.right{
+                width: 100%;
+                clear: both;
+            }
+        }
+    </style>
+<link rel="stylesheet" href="">
+<body>
+    <div class="nav">头部</div>
+    <div class="nav">导航</div>
+    <div>
+        <img src="1.jpg" alt="">
+    </div>
+    <div id="content">
+        <div class="left">
+            提供基于云端的DDoS入侵、防御及网站安全防御、网站木马查杀和网站数据备份服务
+            全国仅有的8线BGP骨干网络，全网覆盖（涵盖电信、联通和移动等)
+            全球机房可选：北京、青岛、杭州、香港、美国、新加坡，选择更近的机房，速度更快
+        </div>
+        <div class="right">
+            提供基于云端的DDoS入侵、防御及网站安全防御、网站木马查杀和网站数据备份服务
+            全国仅有的8线BGP骨干网络，全网覆盖（涵盖电信、联通和移动等)
+            全球机房可选：北京、青岛、杭州、香港、美国、新加坡，选择更近的机房，速度更快
+        </div>
+    </div>
+</body>
+</html>
