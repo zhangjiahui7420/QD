@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="./jquery-3.2.1.js"></script>
+    <script>
+        let p1 = new Promise(function (resolve, reject) {
+            $.get('a.json', {}, function (res) {
+                console.log(res);
+                if (res.a){
+                    resolve(res);
+                }else{
+                    reject();
+                }
+            });
+        }).then(function (resa) {
+            new Promise(function (resolve,reject) {
+                
+            })
+        })    
+    </script>
+</body>
+</html>
