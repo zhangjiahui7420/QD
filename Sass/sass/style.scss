@@ -1,0 +1,93 @@
+$color:#f00;
+$w:300px;
+#div1{
+    background: $color;
+    .aa{
+        width: $w;
+        .bb{
+            width: $w;
+        }
+    }
+    &:hover{
+        background: #ff0;
+    }
+}
+
+$width:200px;
+$wd:$width;
+#div3{
+    #{$wd}:$width;
+}
+
+@mixin xx($w:200px,$h:200px){
+    width: $w;
+    height: $h;
+}
+
+#div4{
+    @include xx($w:200px,$h:200px);
+    font-size: 14px;
+}
+#div5{
+    @include xx();
+    .aa{
+        width: 200px;
+    }
+}
+//继承
+#div6{
+    @extend #div5;
+    //也会继承子选择器
+}
+
+//合并
+@import 'base';
+
+//map
+$m:(light:#fff,dark:#000);
+#div7{
+    color:map-get($m,light);
+}
+
+@function foo($bg){
+    @if($bg == 1){
+        @return #f00;
+    }@else if($bg == 2){
+        @return #000;
+    }@else{
+        @return #0f0;
+    }
+}
+
+$column: 12;
+@for $i from 1 through 12{
+    .col-lg-#{$i}{
+        width: percentage($i/100);
+    }
+}
+
+@each $icon in $icons{
+    .icon-#{$icon}{
+        background-image:url($icon + '.jpg');
+
+    }
+}
+
+$i: 5;
+@while $i > 0{
+    .col-md-#{$i}{
+        width: percentage($i/100);
+    
+    }
+    $i: $i - 1
+}
+
+$m: (light: #fff,dark: #000);
+@function get-color($key){
+    @if not(map-has-key($m, $key)){
+        @error '不存在'；
+    }@else{
+        @return map-get($m , $key);
+    }
+}
+
