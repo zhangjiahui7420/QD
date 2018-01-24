@@ -1,5 +1,7 @@
 const path = require('path');
 const HtmlPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 module.exports = {
     //入口文件
     entry:{
@@ -16,7 +18,11 @@ module.exports = {
         rules:[
             {
                 test:/\.css$/,
-                use:['style-loader','css-loader']
+                // use:['style-loader','css-loader']
+                use:ExtractTextPlugin.extract({
+                    fallback:"style-loader",
+                    use:"css-loader"
+                })
             }
         ]
     },
@@ -28,8 +34,9 @@ module.exports = {
             },
             hash:true,
             template:'./src/index.html'
-        })
-
+        }),
+        new ExtractTextPlugin("css/index.css"),
+        new UglifyJsPlugin()
     ],
     //配置webpack开发服务功能
     devServer:{
