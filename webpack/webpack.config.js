@@ -23,6 +23,15 @@ module.exports = {
                     fallback:"style-loader",
                     use:"css-loader"
                 })
+            },{
+                test:/\.(png|jpg|gif)$/,
+                use:[{
+                    loader:'url-loader',
+                    options:{
+                        limit:50000,
+                        outputPath:'images/'
+                    }
+                }]
             }
         ]
     },
