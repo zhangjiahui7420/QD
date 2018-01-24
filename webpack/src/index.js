@@ -1,2 +1,2 @@
-import	css from'./css/index.css';
+import	css from './css/index.css';
 let a = 5;
