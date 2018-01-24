@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build":"webpack",
+    "dev":"webpack-dev-server"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/zhangjiahui7420/xiaomi/issues"
   },
-  "homepage": "https://github.com/zhangjiahui7420/xiaomi#readme"
+  "homepage": "https://github.com/zhangjiahui7420/xiaomi#readme",
+  "devDependencies": {
+    "webpack": "^3.10.0"
+  }
 }
