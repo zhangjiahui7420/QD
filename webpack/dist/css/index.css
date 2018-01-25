@@ -1,5 +1,6 @@
 #div1{
     width: 200px;
     height: 200px;
-    background: #f00;
+    /* background: #f00; */
+    background-image: url(http://127.0.0.1:8081/images/4a551b0b44b35b781177d306ec20ed62.jpg);
 }
