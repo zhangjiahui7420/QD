@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for = "(school,index) in schools">{{school}} -- {{index}}</li>
+        </ul>
+
+        <ul>
+            <li v-for = "(val,key,index) in obj">
+                {{val}}
+                {{key}}
+                {{index}}
+            </li>
+        </ul>
+
+        <ul>
+            <li v-for = "(val, key, index) in arr ">
+                {{val}}
+                {{key}}
+                {{index}}
+            </li>
+        </ul>
+
+        <ul>
+            <li v-for = "obj in arrSort">
+                <div v-for = "(val, key) in obj">{{val}} -- {{dev}}</div>
+            </li>
+        </ul>        
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            schools:['农大','金融','林大'],
+            obj:{
+                name:'zs',
+                age:18,
+                company:'baidu',
+            },
+            arr:[{
+                name:'z3',
+                age:'18',
+                company:'baidu',
+            },{
+                name:'z2',
+                age:'16',
+                company:'ali',
+            },{
+                name:'z1',
+                age:'20',
+                company:'tencent',
+            }]
+        },
+        computed:{
+            arrSort(){ //属性
+                return this.arr.sort(function(a,b){  //arr 不能重名
+                    return a.age - b.age;
+                });
+            }
+        }
+    });
+    </script>
+</body>
+</html>
