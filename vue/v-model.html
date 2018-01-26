@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <form action="">
+            用户名：
+            <input type="text"  v-model="username">
+            <h1>用户名是：{{username}}</h1>
+            年龄：
+            <input type="number" v-model.number="age">
+            <h1>年龄是：{{age}}</h1>
+            性别：
+            <input type="radio" v-model = "sex" value="nan">男
+            <input type="radio" v-model = "sex" value="nv">女
+            <h1>性别是：{{sex}}</h1>
+            爱好：
+            <input type="checkbox" v-model = hobbys value="周杰伦">周杰伦
+            <input type="checkbox" v-model = hobbys value="白敬亭">白敬亭
+            <input type="checkbox" v-model = hobbys value="刘昊然">刘昊然
+            <h1>我的爱好是：{{hobbys}}</h1>
+
+            学校：
+            <select name="" id="" v-model="school">
+                <option value="黑大">黑大</option>
+                <option value="林大">林大</option>
+                <option value="农大">农大</option>
+            
+            </select>
+            <h1>我的学校是：{{school}}</h1>
+
+            自我介绍：
+            <textarea name="" id="" cols="30" rows="10" v-model="description"></textarea>
+            <h1>我的自我介绍：{{description}}</h1>            
+        </form>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+    new Vue({
+        el:"#app",
+        data:{
+            username:'',
+            age:'',
+            sex:'',
+            hobbys:[],
+            school:'农大',
+            description:'',
+        }
+    });
+    </script>
+</body>
+</html>
