@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    #div1{
+        width: 200px;
+        height: 200px;
+        background: #345224
+    }
+    #div2{
+        width: 100px;
+        height: 100px;
+        background: #868264
+    }
+</style>
+<body>
+    <div id="app">
+        <div id="div1" @click= "clickDiv1">
+            <div id="div2" @click.stop = "clickDiv2($event) "></div>
+        </div>
+
+        <button @click="clickhandler(1,$event)">btn</button>
+        <h1 v-text="num"></h1>
+
+        <button v-on = "{mousedown: doThis, mouseup: doThat }">do</button>
+
+        <a href="http://www.baidu.com" @click.prevent = "baiduClick($event)">baidu</a>
+
+        <input type="text" @keyup.13 = "keyupHandler($event)">  //或者 keyup.enter
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+    new Vue({
+        el:'#app',
+        data:{
+            num: 0,
+        },
+        methods:{
+            clickDiv1(){
+                console.log('div1');
+            },
+            clickDiv2(e){
+                console.log('div2');
+            },
+            clickhandler(n,e){
+                this.num += n;
+            },
+            doThis(){
+                console.log('按住按钮时');
+            },
+            doThat(){
+                console.log('松开按钮时');
+            },
+            baiduClick(e){
+
+            },
+            keyupHandler(e){
+                if(e.keyCode ==13){
+                console.log(123);
+                }
+            },
+        }
+    });
+    </script>
+</body>
+</html>
