@@ -6,44 +6,46 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+<link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.css">
 <style>
-    li{
-        list-style: none;
-    }
-    #app{
-        margin: 0 auto;
-    }
-    #app li{
-        width: 300px;
-        height: 50px;
-        background: #cccccc;
-        margin: 10px;
-    }
-    #app .aa{
+    #app .change{
         background: rgb(93, 103, 189);
-    }
-    #name{
-        float: left;
-    }
-    #money{
-        float: right;
     }
 </style>
 <body>
-    <div id="app">
-            <ul>
-
-                <li v-for="(obj,index) in arr" @click = "clickhandler(obj,index)" :class="{aa:obj.isAa}">
-                    <button id="btn" @click.stop="clickHandler(key)">-</button>
-                    <!-- <input type="checkbox" v-model="money" value="money"> -->
-                    <!-- <div v-for = "val in obj">{{val}}</div> -->
-                    <div id="name">{{obj.name}}</div>
-                    <div id="money">{{obj.money}}</div>
-                    <input type="checkbox" :class="{aa:obj.isAa}">
-                </li>
-            总金额：
-            <h1 v-text = "num"></h1>
-            </ul>
+    <div id="app" class="text-center">
+        <h1>todoList</h1>
+        <hr>
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <td>选择</td>
+                    <td>商品名称</td>
+                    <td>价格</td>
+                    <td>删除</td>                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr :class="{change:product.isSelected}" @click="select(product)" v-for="(product, index) in productList">
+                    <td>
+                        <input type="checkbox" @click.stop >
+                    </td>
+                    <td>{{product.name}}</td>
+                    <td>{{product.price}}</td>
+                    <td>
+                        <button type="button" @click.stop class="btn btn-warning glyphicon glyphicon-remove btn-xs"></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="button" class="btn btn-danger btn-xs">删除所选</button>
+                    </td>
+                    <td colspan="3">  <!--占几格 -->
+                        总价格：{{ }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
     <script src="vue.js"></script>
@@ -53,31 +55,38 @@
             data:{
                 num: 0,
                 money:'',
-                arr:[{
+                productList:[{
                     name:"衣服",
-                    money:100,
-                    isAa:false
+                    price:100,
+                    isSelected:false
                 },
                 {
                     name:"鞋",
-                    money:200,
-                    isAa:false
+                    price:200,
+                    isSelected:false
                 },{
                     name:"裤子",
-                    money:300,
-                    isAa:false
+                    price:300,
+                    isSelected:false
+                },{
+                    name:"帽子",
+                    price:72,
+                    isSelected:false,
                 }],
             },
             methods:{
-                clickhandler(obj,index){
-                    console.log(obj.isAa);
-                    obj.isAa = !obj.isAa;
-                    this.num += obj.money;                  
-                },
-                clickHandler(key){
-                    console.log(key);
-                    this.arr.splice(key,1);
-                }
+                // clickhandler(obj,index){
+                //     console.log(obj.isAa);
+                //     obj.isAa = !obj.isAa;
+                //     this.num += obj.money;                  
+                // },
+                // clickHandler(key){
+                //     console.log(key);
+                //     this.arr.splice(key,1);
+              //  }
+              select(product){
+                  product.isSelected= !product.isSelected;
+              }
             }
 
         });
