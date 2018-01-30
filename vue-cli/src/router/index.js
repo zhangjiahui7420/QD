@@ -5,6 +5,7 @@ import test from '@/components/test'
 import test1 from '@/components/test1'
 import test2 from '@/components/test2'
 import testUrl from '@/components/testUrl'
+import Counter from '@/components/Counter'
 
 
 Vue.use(Router)
@@ -35,7 +36,9 @@ export default new Router({
       path:'/testUrl/:userId(\\d+)/:username',
       component:testUrl,
       name:'testUrl'
+    },{
+      path: '/couter',
+      component: Counter 
     }
-
   ]
 })

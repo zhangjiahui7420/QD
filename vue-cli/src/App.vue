@@ -7,6 +7,7 @@
       <router-link :to="{name:'test1',params:{username:'zhangjiahui',age:22}}">子路由1</router-link>
       <router-link to="/test/test2">子路由2</router-link>
       <router-link to="/testUrl/5/zhangsan">测试URL</router-link>
+      <router-link to="/couter">vuex</router-link>
     </div>
     <router-view/>
   </div>
