@@ -31,6 +31,7 @@ export default new Router({
     },{
       path: '/book',
       name: 'Book',
+      
       component: Book,
       beforeEnter(to, from, next){
         from.name === null ? next('/') : next();
