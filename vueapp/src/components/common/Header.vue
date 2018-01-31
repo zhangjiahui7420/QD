@@ -1,6 +1,6 @@
 <template>
-    <div class="header">
-        <span class="home">首页</span>
+    <div class="header" :style="{background:bgColor}">
+        <span @click="$emit('home')" class="home">首页</span>
         <h2 class="title">
             <slot name="title">默认值</slot>
         </h2>
@@ -8,13 +8,14 @@
 </template>
 
 <script>
-
+export default {
+    props:['bgColor']
+}
 </script>
 
 <style scoped>
     .header{
         height: 1rem;
-        background-color:rgb(33, 150, 243);
         line-height: 1rem;
         color: #fff;
         position: fixed;

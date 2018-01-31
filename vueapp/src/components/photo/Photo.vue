@@ -1,22 +1,13 @@
 <template>
     <div>
-        <common-header bgColor="rgb(33, 150, 243)">
-            <span slot="title">Photo</span>
-        </common-header>
-
-        <common-footer bgColor="rgb(33, 150, 243)">
-        </common-footer>
+        <h1>photo</h1>
     </div>
 </template>
 
 <script>
-import CommonHeader from "@/components/common/Header";
-import CommonFooter from "@/components/common/Footer";
+
 export default {
-    components:{
-        CommonHeader,
-        CommonFooter
-    }
+   
 };
 </script>
 
