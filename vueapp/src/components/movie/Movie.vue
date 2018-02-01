@@ -6,10 +6,10 @@
                     <img :src="movie.img">
                 </div>
                 <div class="movie-info">
-                    <p class="movie-name">{{ movie.nm}}
-                    <div class="movie-xd">{{ movie.ver }}</div>
-                    <div class="movie-grade">{{ movie.sc }}</div>
-                    </p>
+                    <div class="movie-row">
+                        <p class="movie-name">{{ movie.nm}}</p>
+                        <div class="movie-grade">{{ movie.sc == 0 ? movie.wish +'人想看':movie.sc+'分' }}</div>
+                    </div>
                     <p>{{ movie.cat }}</p>
                     <p>主演：{{ movie.star }}</p>
                     <p>{{ movie.rt }}</p>
@@ -37,12 +37,10 @@ export default {
     },
    methods: {
        getMovieData() {
-           axios.get(API_PROXY + `http://m.maoyan.com/movie/list.json?type=hot&offset=${
-              this.movieList.length
-            }&limit=10`)
-            .then(res =>{
+           axios.get(API_PROXY + `http://m.maoyan.com/movie/list.json?type=hot&offset=${ this.movieList.length }&limit=10`)
+            .then(res => {
                 let list = res.data.data.movies;
-                console.log(res)
+              //  console.log(res)
                 if(list.length < 10){
                     this.end = true;
                 }
@@ -65,10 +63,12 @@ export default {
             let scrollTop = document.documentElement.scrollTop;
             let clientHeight = document.documentElement.clientHeight;
             let scrollHeight = document.documentElement.scrollHeight;
+           // console.log(scrollTop,clientHeight,scrollHeight)
             if(scrollTop + clientHeight == scrollHeight && !this.end){
                 this.isLoading = true;
+                this.getMovieData();
             }
-        }
+        };
     } 
 };
 </script>
@@ -76,15 +76,16 @@ export default {
 <style scoped>
 .list {
     margin-top:1rem;
+    margin-bottom: 2rem;
     padding: 0 0.1rem;
 }
 .movie {
     display: flex;
     border-bottom: 1px solid #ccc;
-    padding: 0.1rem;
+    padding: 0.3rem
 }
 .movie-img {
-    width: 0;
+    width:0;
     flex-grow: 1;
     margin-right: 0.1rem;
 }
@@ -92,20 +93,26 @@ export default {
     flex-grow: 2;
     width: 0;
 }
+.movie-row {
+    display: flex;
+}
 .movie-name {
     font-weight: bolder;
+    flex-grow: 10;
+    font-size: 0.3rem;
 }
 .movie-grade {
     float: right;
-    top: 0;
     color: yellow;
     font-size: 0.3rem;
+    flex-grow: 1;
 }
 .loading {
-    text-align: center;
     position: fixed;
-    bottom: 1rem;
-    width:100%;
+    bottom: 0.1rem;
+    width:150px;
+    left: 50%;
+    transform:translate(-50%,-50%);
 }
 .tip{
     text-align: center;
