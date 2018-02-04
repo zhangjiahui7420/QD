@@ -82,7 +82,7 @@ export default {
 .movie {
     display: flex;
     border-bottom: 1px solid #ccc;
-    padding: 0.3rem
+    padding: 0.1rem
 }
 .movie-img {
     width:0;
@@ -110,9 +110,9 @@ export default {
 .loading {
     position: fixed;
     bottom: 0.1rem;
-    width:150px;
-    left: 50%;
-    transform:translate(-50%,-50%);
+    // width:150px;
+    // left: 50%;
+    // transform:translate(-50%,-50%);
 }
 .tip{
     text-align: center;
