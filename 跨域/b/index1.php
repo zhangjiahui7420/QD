@@ -1,6 +1,6 @@
 <?php
-    $username = $_GET['username'];
-    $callback = $_GET['callback'];
+    $username = $_GET["username"];
+    $callback = $_GET["callback"];
 
     echo "alert($username)";
 
