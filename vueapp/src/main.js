@@ -3,9 +3,10 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-
 import './assets/css/reset.css'
 import './assets/js/rem.js'
+import VueTouch from 'vue-touch'
+Vue.use(VueTouch, { name: 'v-touch' });
 
 Vue.config.productionTip = false
 
