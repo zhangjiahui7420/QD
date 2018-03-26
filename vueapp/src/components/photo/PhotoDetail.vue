@@ -1,21 +1,38 @@
 <template>
-<div class="img" :style="{background:`url(static/img/${$route.params.photoIndex}.jpg) center/contain no-repeat`}" >
-    
-</div>    
+<div class="img" :style="{background:`url(static/img/${$route.params.photoIndex}.jpg) center/contain no-repeat`}" >  
+<v-touch @swipeleft="onSwipeLeft" @swiperight="onSwipeRight" @tap="tap">   
+</v-touch>
+</div>
 </template>
 
 <script>
-    import axios from 'axios';
     export default {
         data(){
             return {
-
-            }
+                photoIndex: 0
+            };
         },
         created(){
-            console.log(this.$route.params.photoIndex)
-        }
+            this.photoIndex = this.$route.params.index;
+        },
+        methods:{
+            onSwipeLeft(){
+                this.photoIndex--;
+                if(this.photoIndex == -1){
+                    this.photoIndex = this.$route.params.photoIndex.length -1;
 
+                }
+            },
+            onSwipeRight(){
+                this.photoIndex++;
+                if(this.photoIndex === this.$route.params.photoIndex.length){
+                    this.nowIndex = 0;
+                }
+            },
+            tap(){
+                this.$router.go(-1);
+            }
+        }
     }
 </script>
 
