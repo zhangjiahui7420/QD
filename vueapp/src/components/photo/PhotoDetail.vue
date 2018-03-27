@@ -19,13 +19,13 @@
             onSwipeLeft(){
                 this.photoIndex--;
                 if(this.photoIndex == -1){
-                    this.photoIndex = this.$route.params.photoIndex.length -1;
+                    this.photoIndex = this.$store.state.photoList.length -1;
 
                 }
             },
             onSwipeRight(){
                 this.photoIndex++;
-                if(this.photoIndex === this.$route.params.photoIndex.length){
+                if(this.photoIndex === this.$store.state.photoList.length){
                     this.nowIndex = 0;
                 }
             },
