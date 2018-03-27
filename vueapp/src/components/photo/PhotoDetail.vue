@@ -12,6 +12,13 @@
                 photoIndex: 0
             };
         },
+        computed: {
+            styleObj() {
+            return `background: #000 url(${
+                this.$store.state.photoList[this.photoIndex].src
+            }) no-repeat center/contain `;
+            }
+        },        
         created(){
             this.photoIndex = this.$route.params.index;
         },
@@ -26,7 +33,7 @@
             onSwipeRight(){
                 this.photoIndex++;
                 if(this.photoIndex === this.$store.state.photoList.length){
-                    this.nowIndex = 0;
+                    this.photoIndex = 0;
                 }
             },
             tap(){
