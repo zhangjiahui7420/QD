@@ -27,7 +27,6 @@
                 this.photoIndex--;
                 if(this.photoIndex == -1){
                     this.photoIndex = this.$store.state.photoList.length -1;
-
                 }
             },
             onSwipeRight(){
