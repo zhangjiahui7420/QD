@@ -1,0 +1,6 @@
+#homeimg2 {
+    background: url("img/homeimg2.jpg") no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    background-color: #000;
+}
