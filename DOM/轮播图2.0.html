@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>轮播图2.0</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        li {
+            list-style: none;
+        }
+        
+        #container {
+            width: 520px;
+            height: 280px;
+            position: relative;
+            margin: 100px auto;
+        }
+        
+        #imgs img {
+            display: none;
+        }
+        
+        #imgs .selected {
+            display: block;
+        }
+        
+        #tab {
+            position: absolute;
+            height: 20px;
+            right: 10px;
+            bottom: 10px;
+        }
+        
+        #arrow {
+            position: absolute;
+            height: 20px;
+            left: 10px;
+            bottom: 10px;
+        }
+        
+        #tab li,
+        #arrow span {
+            float: left;
+            width: 20px;
+            height: 20px;
+            border: #000 1px solid;
+            margin-right: 2px;
+            text-align: center;
+            line-height: 20px;
+            cursor: pointer;
+            background: brown;
+            color: azure;
+        }
+        
+        #tab .selected {
+            background: cadetblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="imgs">
+            <img src="img/1.jpg" alt="" class="selected">
+            <img src="img/2.jpg" alt="">
+            <img src="img/3.jpg" alt="">
+            <img src="img/4.jpg" alt="">
+        </div>
+        <div id="arrow">
+            <span id="left">&lt;</span>
+            <span id="right">&gt;</span>
+        </div>
+        <ul id="tab">
+            <li class="selected">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+    </div>
+
+    <script>
+        var oContainer = document.getElementById("container");
+        var oImgs = document.getElementById("imgs");
+        var aImg = oImgs.getElementsByTagName("img");
+        var oLeft = document.getElementById("left");
+        var oRight = document.getElementById("right");
+        var oTab = document.getElementById("tab");
+        var aLi = oTab.getElementsByTagName("li");
+        var iNowIndex = 0;
+        var timer;
+
+        for (var i = 0; i < aLi.length; i++) {
+            aLi[i].index = i;
+            aLi[i].onmouseover = function() {
+                iNowIndex = this.index;
+                changImg()
+            }
+        }
+
+        function changImg() {
+            for (var i = 0; i < aLi.length; i++) {
+                aLi[i].className = '';
+                aImg[i].className = '';
+            }
+            aLi[iNowIndex].className = "selected";
+            aImg[iNowIndex].className = "selected";
+        }
+
+        oLeft.onclick = oRight.onclick = function() {
+            if (this === oLeft) {
+                iNowIndex--;
+                if (iNowIndex == -1) {
+                    iNowIndex = aImg.length - 1;
+                }
+            } else {
+                iNowIndex++;
+                if (iNowIndex == aImg.length) {
+                    iNowIndex = 0;
+                }
+            }
+            changImg()
+        }
+
+        oLeft.onselectstart = oRight.onselectstart = function() {
+            return false;
+        }
+
+        function play() {
+            timer = setInterval(function() {
+                oRight.onclick();
+            }, 2000)
+        }
+
+        play()
+
+        oContainer.onmouseover = function() {
+            clearInterval(timer);
+        }
+        oContainer.onmouseout = function() {
+            play();
+        }
+    </script>
+</body>
+
+</html>
