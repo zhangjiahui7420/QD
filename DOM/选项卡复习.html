@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>明星选项卡</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        li {
+            list-style: none;
+        }
+        
+        #container {
+            width: 309px;
+            height: 300px;
+            border: midnightblue 1px solid;
+            margin: 100px auto;
+        }
+        
+        #container li {
+            width: 100px;
+            height: 30px;
+            padding-left: 2px;
+            float: left;
+            border-right: slateblue 1px solid;
+            border-bottom: slateblue 1px solid;
+            cursor: pointer;
+            text-align: center;
+            line-height: 30px;
+        }
+        
+        #tab .select {
+            background-color: rosybrown;
+            color: aliceblue;
+        }
+        
+        #content div {
+            display: none;
+        }
+        
+        #content .select {
+            display: block;
+            text-align: center;
+            line-height: 270px;
+            color: brown;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <ul id="tab">
+            <li class="select">周杰伦</li>
+            <li>白敬亭</li>
+            <li>胡一天</li>
+        </ul>
+        <div id="content">
+            <div class="select">周杰伦周杰伦周杰伦周杰伦周杰伦</div>
+            <div>白敬亭白敬亭白敬亭白敬亭白敬亭</div>
+            <div>胡一天胡一天胡一天胡一天胡一天</div>
+        </div>
+    </div>
+
+    <script>
+        var oTab = document.getElementById("tab");
+        var aLi = oTab.getElementsByTagName("li");
+        var oContent = document.getElementById("content");
+        var aDiv = oContent.getElementsByTagName("div");
+
+        for (var i = 0; i < aLi.length; i++) {
+            aLi[i].index = i;
+            aLi[i].onclick = function() {
+                for (var i = 0; i < aLi.length; i++) {
+                    aLi[i].className = "";
+                    aDiv[i].className = "";
+                }
+                this.className = "select";
+                aDiv[this.index].className = "select";
+            };
+        }
+    </script>
+</body>
+
+</html>
