@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>无缝滚动</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        li {
+            list-style: none;
+        }
+        
+        #container {
+            width: 320px;
+            height: 200px;
+            border: rgb(187, 106, 79) 1px solid;
+            position: relative;
+            overflow: hidden;
+            margin: 100px auto;
+        }
+        
+        #tab {
+            width: 440px;
+            height: 100px;
+            position: absolute;
+        }
+        
+        #tab li {
+            width: 100px;
+            height: 100px;
+            background-color: darkseagreen;
+            float: left;
+            line-height: 100px;
+            text-align: center;
+            margin-right: 10px;
+            color: ghostwhite;
+        }
+        
+        #arrows {
+            position: absolute;
+            bottom: 30px;
+            width: 130px;
+            left: 50%;
+            margin-left: -65px;
+        }
+        
+        #arrows span {
+            width: 60px;
+            height: 20px;
+            background-color: deepskyblue;
+            color: ghostwhite;
+            float: left;
+            margin-right: 5px;
+            line-height: 20px;
+            text-align: center;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <ul id="tab">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+        <div id="arrows">
+            <span id="left">向左</span>
+            <span id="right">向右</span>
+        </div>
+    </div>
+
+    <script>
+        var oTab = document.getElementById("tab");
+        var oLeft = document.getElementById("left");
+        var oRight = document.getElementById("right");
+    </script>
+</body>
+
+</html>
