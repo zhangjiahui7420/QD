@@ -82,6 +82,26 @@
         var oTab = document.getElementById("tab");
         var oLeft = document.getElementById("left");
         var oRight = document.getElementById("right");
+        var direction = 10;
+        oTab.innerHTML += oTab.innerHTML;
+        oTab.style.width = oTab.offsetWidth * 2 + 'px';
+        setInterval(function() {
+            oTab.style.left = (oTab.offsetLeft - direction) + 'px';
+            if (-oTab.offsetLeft >= oTab.offsetWidth / 2) {
+                oTab.style.left = 0;
+            };
+            if (oTab.offsetLeft > 0) {
+                oTab.style.left = -oTab.offsetWidth / 2 + 'px';
+            }
+        }, 100);
+
+        oLeft.onclick = oRight.onclick = function() {
+            if (this === oLeft) {
+                direction = 10;
+            } else {
+                direction = -10;
+            }
+        };
     </script>
 </body>
 
