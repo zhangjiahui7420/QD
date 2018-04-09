@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>折叠菜单</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        ul,
+        li {
+            list-style: none;
+        }
+        
+        #container {
+            width: 200px;
+            border: midnightblue 1px solid;
+            margin: 100px auto;
+            text-align: center;
+        }
+        
+        h3 {
+            background-color: mediumslateblue;
+            color: linen;
+            cursor: pointer;
+        }
+        
+        #container .submenu li:hover {
+            background-color: lightpink;
+        }
+        
+        #container .submenu ul {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="container">
+        <li class="submenu">
+            <h3>管理区</h3>
+            <ul>
+                <li>001</li>
+                <li>002</li>
+                <li>003</li>
+                <li>004</li>
+            </ul>
+
+        </li>
+        <li class="submenu">
+            <h3>交流区</h3>
+            <ul>
+                <li>001</li>
+                <li>002</li>
+                <li>003</li>
+                <li>004</li>
+            </ul>
+        </li>
+    </ul>
+
+    <script src="jslib.js"></script>
+    <script>
+        var oContainer = document.getElementById('container');
+        var aH3 = oContainer.getElementsByTagName('h3');
+        var aUl = oContainer.getElementsByTagName('ul');
+        for (var i = 0; i < aH3.length; i++) {
+            aH3[i].bFlag = false;
+            aH3[i].onclick = function() {
+
+                var oUl = next(this);
+                console.log(oUl);
+                if (this.bFlag) {
+                    oUl.style.display = 'none';
+                } else {
+                    oUl.style.display = 'block';
+                }
+                this.bFlag = !this.bFlag;
+            }
+        }
+    </script>
+</body>
+
+</html>

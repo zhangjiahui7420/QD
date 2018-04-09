@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <h1 id="h1">h1h1h1h1</h1>
+    <div id="div1">div1</div> -->
+
+    <ul id="ul1">
+        <li>001</li>
+        <li>002</li>
+        <li>003</li>
+        <li>004</li>
+    </ul>
+
+    <script>
+        // var oH1 = document.getElementById('h1');
+        // var oDiv = document.getElementById('div1');
+        // console.log(next(oH1));
+
+        var oUl1 = document.getElementById('ul1');
+        console.log(first(oUl1));
+
+        function next(elem) {
+            do {
+                elem = elem.nextSibling;
+            } while (elem && elem.nodeType != 1); //当nodeType != 1的时候，会一直do。
+            //如果没有兄弟元素（null），就是elem返回false,&&后面就不会再被执行。
+            return elem;
+        }
+
+        function first(elem) {
+            elem = elem.firstChild;
+            return elem.nodeType == 1 ? elem : next(elem);
+        }
+    </script>
+</body>
+
+</html>
