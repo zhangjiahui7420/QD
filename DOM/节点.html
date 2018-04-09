@@ -63,25 +63,6 @@
         var oDiv22 = document.querySelector('#div2 .aa'); //兼容性问题
         var aaaa = document.querySelectorAll('#div2 .aa'); //兼容性问题
         console.log(aaaa);
-
-
-        //封装函数，通过class的名字获取元素
-        function getByClassName(clsName, context) {
-            context = context || document;
-            if (context.getElementsByClassName) { //能力检测
-                return context.getElementsByClassName(clsName);
-            } else {
-                var allList = context.getElementsByTagName('*');
-                var result = [];
-                for (var i = 0; i < allList.length; i++) {
-                    //暂时还不完善，完整的需要用到正则表达式
-                    if (allList[i].className.indexOf(clsName) != -1) {
-                        result.push(allList[i]);
-                    }
-                }
-                return result;
-            }
-        }
     </script>
 </body>
 
