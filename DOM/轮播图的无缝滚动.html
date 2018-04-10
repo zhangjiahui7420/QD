@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        li {
+            list-style: none;
+        }
+        
+        #container {
+            width: 520px;
+            height: 280px;
+            position: relative;
+            margin: 100px auto;
+            overflow: hidden;
+        }
+        
+        #tab {
+            position: absolute;
+            height: 20px;
+            right: 10px;
+            bottom: 10px;
+        }
+        
+        #arrow {
+            position: absolute;
+            height: 20px;
+            left: 10px;
+            bottom: 10px;
+        }
+        
+        #tab li,
+        #arrow span {
+            float: left;
+            width: 20px;
+            height: 20px;
+            border: #000 1px solid;
+            margin-right: 2px;
+            text-align: center;
+            line-height: 20px;
+            cursor: pointer;
+            background: brown;
+            color: azure;
+        }
+        
+        #tab .selected {
+            background: cadetblue;
+        }
+        
+        #imgs {
+            width: 2080px;
+        }
+        
+        #imgs img {
+            float: left;
+        }
+    </style>
+    </head>
+
+    <body>
+        <div id="container">
+            <div id="imgs">
+                <img src="img/1.jpg" alt="">
+                <img src="img/2.jpg" alt="">
+                <img src="img/3.jpg" alt="">
+                <img src="img/4.jpg" alt="">
+            </div>
+            <div id="arrow">
+                <span id="left">&lt;</span>
+                <span id="right">&gt;</span>
+            </div>
+            <ul id="tab">
+                <li class="selected">1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+        </div>
+
+        <script>
+            var oTab = document.getElementById('tab');
+            var aLi = oTab.children;
+            for (var i = 0; i < aLi.length; i++) {
+                aLi[i].onmouseover = function() {
+                    for (var i = 0; i < aLi.length; i++) {
+                        aLi[i].className = '';
+                    }
+                    this.className = 'selected';
+                }
+            }
+        </script>
+    </body>
+
+</html>
