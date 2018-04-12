@@ -1,3 +1,11 @@
+/**
+ *  根据元素的id查找元素对象
+ */
+function id(sId) {
+    return document.getElementById(sId);
+}
+
+
 //找到elem的下一个兄弟元素 nodeType=1
 function next(elem) {
     do {

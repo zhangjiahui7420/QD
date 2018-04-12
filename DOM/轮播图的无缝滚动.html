@@ -61,6 +61,9 @@
         
         #imgs {
             width: 2080px;
+            position: absolute;
+            left: 0;
+            top: 0;
         }
         
         #imgs img {
@@ -89,17 +92,72 @@
             </ul>
         </div>
 
+        <script src="wichung-1.0.js"></script>
         <script>
-            var oTab = document.getElementById('tab');
-            var aLi = oTab.children;
-            for (var i = 0; i < aLi.length; i++) {
-                aLi[i].onmouseover = function() {
+            window.onload = function() {
+                var oContainer = id('container');
+                var oTab = id('tab');
+                var aLi = oTab.children;
+                var oImgs = id('imgs');
+                var aImg = oImgs.children;
+                var oImgWidth = aImg[0].offsetWidth;
+                var oLeft = id('left');
+                var oRight = id('right');
+                var iNowIndex = 0;
+                var timer;
+
+                oImgs.appendChild(aImg[0].cloneNode());
+                oImgs.style.width = oImgWidth * 5 + 'px';
+
+                for (var i = 0; i < aLi.length; i++) {
+                    aLi[i].index = i;
+                    aLi[i].onmouseover = function() {
+                        iNowIndex = this.index;
+                        changImg();
+                    }
+                }
+                oLeft.onclick = oRight.onclick = function() {
+                    if (this === oLeft) {
+                        iNowIndex--;
+                        if (iNowIndex == -1) {
+                            iNowIndex = aLi.length - 1;
+                            oImgs.style.left = -(aImg.length - 1) * oImgWidth + 'px';
+                        }
+                    } else {
+                        iNowIndex++;
+                        if (iNowIndex == aImg.length) { //5
+                            iNowIndex = 1;
+                            oImgs.style.left = 0;
+                        }
+                    }
+                    changImg();
+                }
+                play();
+
+                oContainer.onmouseover = function() {
+                    clearInterval(timer);
+                };
+                oContainer.onmouseout = function() {
+                    play();
+                };
+
+                function play() {
+                    timer = setInterval(function() {
+                        oRight.onclick();
+                    }, 1000)
+                };
+
+
+                function changImg() {
                     for (var i = 0; i < aLi.length; i++) {
                         aLi[i].className = '';
                     }
-                    this.className = 'selected';
+                    aLi[iNowIndex == aLi.length ? 0 : iNowIndex].className = 'selected';
+                    animate(oImgs, {
+                        left: -oImgWidth * iNowIndex
+                    })
                 }
-            }
+            };
         </script>
     </body>
 
