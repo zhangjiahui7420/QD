@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>放大镜</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        img {
+            border: 0;
+        }
+        
+        #small,
+        #big {
+            float: left;
+            width: 400px;
+            height: 400px;
+        }
+        
+        #big {
+            overflow: hidden;
+            display: none;
+        }
+        
+        #drag {
+            width: 200px;
+            height: 200px;
+            background: #ccc;
+            opacity: 0.5;
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: none;
+            cursor: crosshair;
+        }
+        
+        #small {
+            position: relative;
+        }
+        
+        #big-pic {
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="small">
+        <img src="1.jpg" alt="">
+        <div id="drag"></div>
+    </div>
+    <div id="big">
+        <img src="2.jpg" id="big-pic">
+    </div>
+
+    <script>
+        var oSmall = document.getElementById('small');
+        var oDrag = document.getElementById('drag');
+        var oBig = document.getElementById('big');
+        var oBigPic = document.getElementById('big-pic');
+
+        oSmall.onmouseover = function() {
+            oDrag.style.display = 'block';
+            oBig.style.display = 'block';
+        }
+        oSmall.onmouseout = function() {
+            oDrag.style.display = 'none';
+            oBig.style.display = 'none';
+        }
+        oDrag.onmousemove = function(e) {
+            e = e || window.event;
+            var left = e.clientX - oDrag.offsetWidth / 2;
+            var top = e.clientY - oDrag.offsetHeight / 2;
+
+            if (left < 0) {
+                left = 0;
+            }
+            if (top < 0) {
+                top = 0;
+            }
+            var maxX = oSmall.offsetWidth - oDrag.offsetWidth;
+            if (left > maxX) {
+                left = maxX;
+            }
+            var maxY = oSmall.offsetHeight - oDrag.offsetHeight;
+            if (top > maxY) {
+                top = maxY;
+            }
+
+            oDrag.style.left = left + 'px';
+            oDrag.style.top = top + 'px';
+
+            var fScaleX = left / maxX;
+            var fScaleY = top / maxY;
+            oBigPic.style.left = -fScaleX * (oBigPic.offsetWidth - oBig.offsetWidth) + 'px';
+            oBigPic.style.top = -fScaleY * (oBigPic.offsetHeight - oBig.offsetHeight) + 'px';
+
+        }
+    </script>
+</body>
+
+</html>
