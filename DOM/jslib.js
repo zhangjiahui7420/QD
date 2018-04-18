@@ -37,6 +37,21 @@ function getByClassName(clsName, context) {
     }
 }
 
+//添加事件
+
+function addEvent(elem, type, handler) {
+    if (elem.addEventListener) {
+        elem.addEventListener(type, handler, false);
+    } else if (elem.attachEvent) {
+        elem.fnxx = function() {
+            handler.call(elem);
+        };
+        elem.attachEvent('on' + type, elem.fnxx);
+    } else {
+        elem['on' + type] = handler;
+    }
+}
+
 //实现深拷贝
 function clone(obj) {
     var newObj = {};
