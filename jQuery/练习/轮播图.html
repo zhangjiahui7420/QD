@@ -114,6 +114,14 @@
                 changImg();
             });
 
+            play();
+
+            function play() {
+                timer = setInterval(function() {
+                    $('#next').trigger('click');
+                }, 1000);
+            }
+
             function changImg() {
                 $lis.eq(nowIndex).add($imgs.eq(nowIndex)).addClass('selected').siblings().removeClass('selected');
             }
